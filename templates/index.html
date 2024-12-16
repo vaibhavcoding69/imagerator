@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #15557a;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        body::-webkit-scrollbar {
+            width: 12px;
+        }
+        body::-webkit-scrollbar-track {
+            background: #15557a;
+        }
+        body::-webkit-scrollbar-thumb {
+            background-color: #ffffff;
+            border-radius: 20px;
+            border: 3px solid #15557a;
+        }
+        h1 {
+            text-align: center;
+            padding: 10px 5px;
+            border-radius: 150px;
+            background-color: #0b62db;
+            color: rgb(0, 0, 0);
+            font-size: 50px;
+            border: 2px solid #000000;
+        }
+        form {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            flex-grow: 1;
+            border-radius: 30px;
+            font-size: 16px;
+            border: 1px solid #000000;
+            background-color: #ffffff;
+        }
+        button {
+            border-radius: 50px;
+            padding: 10px 20px;
+            background-color: #000000;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border: 2px solid #ffffff;
+            margin-left: 10px;
+        }
+        #image-preview {
+            text-align: center;
+        }
+        #image-preview img {
+            max-width: 100%;
+            height: auto;
+        }
+        #credits {
+            margin-top: auto;
+            font-size: 14px;
+            text-align: center;
+            background-color: #000000;
+            color: #8d8d8d;
+            border: 5px solid #ffffff;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Generator</h1>
+    <form method="POST">
+        <input type="text" name="prompt" placeholder="Enter a text prompt" required>
+        <button type="submit">Generate</button>
+    </form>
+    <div id="image-preview">
+        {% if image_url %}
+            <p>Image URL: {{ image_url }}</p>
+            <img src="{{ image_url }}" alt="Generated Image" onerror="this.onerror=null;this.src='';this.alt='Error loading image';">
+        {% endif %}
+    </div>
+    <div id="credits">
+        <p style="text-align: center; font-family: monospace; font-size: 14px; text-decoration: underline;">Created by <strong>Vaibhav</strong> for a specific project.</p>
+        <p style="text-align: left; font-family: monospace; font-size: 14px;">Powered by <strong>huggingface.com</strong> and <strong>Python</strong>.</p>
+        <p style="text-align: left; font-family: monospace; font-size: 14px;">NOTICE: Images generated can be not suitable for your work/purpose, so provide an accurate prompt for the image.</p>
+        <p style="text-align: left; font-family: monospace; font-size: 14px;"> Contact me: <a href="mailto:vaibhavsharma42011@gmail.com" title="mail">Gmail</a> and <a href="https://theaiuser.wordpress.com/" title="profile">my profile</a>.</p>
+    </div>
+    <script>
+        document.querySelector('img').addEventListener('error', function() {
+            console.error('Error loading image:', this.src);
+        });
+    </script>
+</body>
+</html>
