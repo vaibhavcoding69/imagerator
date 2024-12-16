@@ -6,7 +6,8 @@ import os
 
 app = Flask(__name__, static_folder='static', static_url_path='/static')
 
-client = InferenceClient("stabilityai/stable-diffusion-3.5-large", token="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")
+TOKEN = os.getenv("TOKEN")
+client = InferenceClient("stabilityai/stable-diffusion-3.5-large", token=TOKEN)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
